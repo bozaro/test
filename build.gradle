@@ -1,0 +1,33 @@
+buildscript {
+  repositories {
+    jcenter()
+  }
+
+  dependencies {
+    classpath "com.netflix.nebula:gradle-ospackage-plugin:3.1.0"
+  }
+}
+
+task wrapper(type: Wrapper) {
+  gradleVersion = "2.7"
+}
+
+repositories {
+  jcenter()
+}
+
+apply plugin: "nebula.deb"
+
+task distDeb(type: Deb) {
+  from("deb") {
+    exclude "opt/foo"
+    into "/"
+  }
+
+  from("deb/opt/foo") {
+    user "foo"
+    permissionGroup "foo"
+    createDirectoryEntry = true
+    into "/opt/foo"
+  }
+}
