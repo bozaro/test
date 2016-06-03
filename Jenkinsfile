@@ -1,2 +1,4 @@
 echo "Hello, world"
-sh "env | sort"
+node {
+  sh "env | sort"
+}
