@@ -1,7 +1,8 @@
+def TAG2 = binding.variables.get("TAG_NAME")
+
 echo "Hello, world"
 
 def TAG1 = binding.variables.get("TAGNAME")
-def TAG2 = binding.variables.get("TAG_NAME")
 
 node {
   sh "env | sort"
