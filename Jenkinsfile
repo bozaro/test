@@ -1,4 +1,7 @@
 echo "Hello, world"
+
+def TAG1 = binding.variables.get("TAGNAME")
+
 node {
   sh "env | sort"
 
