@@ -18,7 +18,7 @@ fn post_to_documents(req: &mut Request) -> IronResult<Response> {
     match req.get::<bodyparser::Json>() {
         Ok(Some(json_body)) => println!("Parsed body:\n{:?}", json_body),
         Ok(None) => println!("No body"),
-        Err(err) => println!("Error: {:?}", err)
+        Err(err) => println!("Error: {:?}", err),
     }
 
     Ok(Response::with((status::Ok, "Ok")))
