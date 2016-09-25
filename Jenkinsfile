@@ -1,15 +1,7 @@
-def TAG2 = binding.variables.get("TAG_NAME")
-
-echo "Hello, world"
-
-def TAG1 = binding.variables.get("TAGNAME")
-
 node {
-  sh "env | sort"
-
-  def TAG = getBinding().hasVariable("TAGNAME") ? getBinding().getProperty("TAGNAME") : null
+  def TAG = getBinding().hasVariable("TAG_NAME") ? getBinding().getProperty("TAG_NAME") : null
   if (TAG != null) {
-    sh "echo $TAGNAME"
+    sh "echo $TAG_NAME"
   } else {
     sh "echo Non-tag build"
   }
