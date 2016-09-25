@@ -1,13 +1,5 @@
-/*
-properties([[$class: 'ParametersDefinitionProperty', parameterDefinitions: [
-	[$class: 'StringParameterDefinition', defaultValue: 'X', description: 'Some Description', name : 'TAG_NAME'],
-	[$class: 'StringParameterDefinition', defaultValue: 'Y', description: 'Some Description', name: 'TAG_NAME2']
-]]])*/
-
 node {
-
-
-  def B = getProperty("TAG_NAME")
+  def B = getProperty("TAG_NAME2")
   echo "Foo $B"
   def TAG = getBinding().hasVariable("TAG_NAME") ? getBinding().getProperty("TAG_NAME") : null
   if (TAG != null) {
