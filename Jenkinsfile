@@ -1,5 +1,5 @@
 node {
-  def B = getProperty("TAG_NAME3")
+  def B = hasProperty("TAG_NAME3") ? getProperty("TAG_NAME3") : null
   echo "Foo $B"
   def TAG = getBinding().hasVariable("TAG_NAME") ? getBinding().getProperty("TAG_NAME") : null
   if (TAG != null) {
