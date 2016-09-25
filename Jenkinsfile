@@ -8,4 +8,9 @@ node {
   } else {
     sh "echo Non-tag build"
   }
+      def myBuildParams = currentBuild.rawBuild.getAction(ParametersAction.class)
+    for(ParameterValue p in myBuildParams) {
+        println p.name
+        println p.value
+    }
 }
