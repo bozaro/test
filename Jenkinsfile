@@ -7,7 +7,7 @@ def TAG1 = binding.variables.get("TAGNAME")
 node {
   sh "env | sort"
 
-  def TAG = getBinding().hasProperty("TAGNAME") ? getBinding().getProperty("TAGNAME") : null
+  def TAG = getBinding().hasVariable("TAGNAME") ? getBinding().getProperty("TAGNAME") : null
   if (TAG != null) {
     sh "echo $TAGNAME"
   } else {
