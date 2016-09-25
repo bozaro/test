@@ -1,7 +1,7 @@
 node {
   def A = getBinding().hasVariable("TAG_NAME")
   def B = binding.variables.get("TAG_NAME")
-  echo "Foo $A $B"
+  echo "Foo $A $B $TAG_NAME"
   def TAG = getBinding().hasVariable("TAG_NAME") ? getBinding().getProperty("TAG_NAME") : null
   if (TAG != null) {
     sh "echo Tag build"
