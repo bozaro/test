@@ -1,5 +1,5 @@
 node {
-  def B = hasProperty("TAG_NAME3") ? getProperty("TAG_NAME3") : null
+  def B = getParameter("TAG_NAME3")
   echo "Foo $B"
   def TAG = getBinding().hasVariable("TAG_NAME") ? getBinding().getProperty("TAG_NAME") : null
   if (TAG != null) {
@@ -8,4 +8,12 @@ node {
   } else {
     sh "echo Non-tag build"
   }
+}
+
+String getParameter(String name) {
+	try {
+	    return getProperty(name);
+	} catch (MissingPropertyException e) {
+		return false;
+	}
 }
