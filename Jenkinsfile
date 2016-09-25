@@ -14,6 +14,6 @@ String getParameter(String name) {
 	try {
 	    return getProperty(name);
 	} catch (MissingPropertyException e) {
-		return false;
+		return null;
 	}
 }
