@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Test') {
             steps {
-                sh 'find test -iname "*.xml" -exec touch {} ;'
+                sh 'find test -iname "*.xml" -exec touch {} ";"'
                 junit "test/**/*.xml"
             }
         }
