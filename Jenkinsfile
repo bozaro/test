@@ -16,7 +16,7 @@ pipeline {
 
             steps {
                 embeddedPipeline {
-                    message: "FOO"
+                    message = "FOO"
                 }
             }
         }
