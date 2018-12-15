@@ -13,6 +13,12 @@ pipeline {
                 sh 'find test -iname "*.xml" -exec touch {} ";"'
                 junit "test/**/*.xml"
             }
+
+            steps {
+                embeddedPipeline {
+                    message: "FOO"
+                }
+            }
         }
     }
 }
