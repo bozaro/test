@@ -12,9 +12,7 @@ pipeline {
                 sh "sleep 180"
                 sh 'find test -iname "*.xml" -exec touch {} ";"'
                 junit "test/**/*.xml"
-                embeddedPipeline {
-                    message = "FOO"
-                }
+                sayHello
             }
         }
     }
