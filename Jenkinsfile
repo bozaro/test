@@ -9,6 +9,7 @@ pipeline {
         stage('Test') {
             steps {
                 telegramSend '@Bozaro test'
+                telegramSend 'Hello World'
             }
         }
     }
