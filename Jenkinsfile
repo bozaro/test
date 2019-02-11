@@ -8,10 +8,7 @@ pipeline {
     stages {
         stage('Test') {
             steps {
-                sh "env | sort"
-                sh "sleep 180"
-                sh 'find test -iname "*.xml" -exec touch {} ";"'
-                junit "test/**/*.xml"
+                telegramSend '@Bozaro test'
             }
         }
     }
