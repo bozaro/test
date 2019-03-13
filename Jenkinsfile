@@ -13,9 +13,9 @@ pipeline {
             }
         }
         stage('Foo') {
-            parallel {
-                script {
-                    for (i = 0; i < 5; i++) {
+            script {
+                for (i = 0; i < 5; i++) {
+                    parallel {
                         pipeline {
                             stage("Test $i") {
                                 sh 'echo $i'
