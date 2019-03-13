@@ -17,5 +17,18 @@ pipeline {
                 sayHello
             }
         }
+        stage('Foo') {
+            parallel {
+                script {
+                    for (i = 0; i < 5; i++) {
+                        pipeline {
+                            stage("Test $i") {
+                                sh 'echo $i'
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }
