@@ -19,7 +19,8 @@ pipeline {
                         parallel {
                             pipeline {
                                 stage("Test $i") {
-                                sh 'echo $i'
+                                    sh 'echo $i'
+                                }
                             }
                         }
                     }
