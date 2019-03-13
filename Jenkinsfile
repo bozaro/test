@@ -13,11 +13,12 @@ pipeline {
             }
         }
         stage('Foo') {
-            script {
-                for (i = 0; i < 5; i++) {
-                    parallel {
-                        pipeline {
-                            stage("Test $i") {
+            steps {
+                script {
+                    for (i = 0; i < 5; i++) {
+                        parallel {
+                            pipeline {
+                                stage("Test $i") {
                                 sh 'echo $i'
                             }
                         }
