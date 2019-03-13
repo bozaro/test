@@ -5,7 +5,7 @@ pipeline {
             customWorkspace "test"
         }
     }
-    
+
     stages {
         stage('Test') {
             steps {
@@ -13,6 +13,26 @@ pipeline {
             }
         }
         stage('Foo') {
+            steps {
+                script {
+                    parallel linux: {
+                        pipeline {
+                            stage("Test linux") {
+                                sh 'echo linux'
+                            }
+                        }
+                    },
+                    windows: {
+                        pipeline {
+                            stage("Test windows") {
+                                sh 'echo windows'
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        stage('Bar') {
             steps {
                 script {
                     for (i = 0; i < 5; i++) {
