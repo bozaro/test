@@ -35,15 +35,15 @@ pipeline {
         stage('Bar') {
             steps {
                 script {
+                    def stages = [:]
                     for (i = 0; i < 5; i++) {
-                        parallel {
-                            pipeline {
-                                stage("Test $i") {
-                                    sh 'echo $i'
-                                }
+                        stages.put("Test $i", pipeline {
+                            stage("Test $i") {
+                                sh 'echo $i'
                             }
-                        }
+                        })
                     }
+                    parallel stages
                 }
             }
         }
