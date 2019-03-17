@@ -29,9 +29,6 @@ pipeline {
 		        }
 		    }
             steps {
-                sh "echo 123"
-            }
-            steps {
                 script {
                     def stages = [:]
                     for (i = 0; i < 5; i++) {
