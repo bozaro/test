@@ -10,6 +10,10 @@ pipeline {
 		    }
             steps {
                 sh "echo 123"
+		script {
+		    def d = new SimpleDateFormat("yyyyMMdd").format(new Date())
+		    echo d
+		}
             }
         }
         stage("Approve") {
