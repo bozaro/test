@@ -1,35 +1,14 @@
 pipeline {
-    agent {
-        docker {
-            image "ubuntu:18.04"
-            customWorkspace "test"
-        }
-    }
-
-    stages {
-        stage('Test') {
+     stages {
+       stage('Test') {
+		    agent {
+		        docker {
+		            image "ubuntu:18.04"
+		            customWorkspace "test"
+		        }
+		    }
             steps {
                 sh "echo 123"
-            }
-        }
-        stage('Foo') {
-            steps {
-                script {
-                    parallel linux: {
-                        pipeline {
-                            stage("Test linux") {
-                                sh 'echo linux'
-                            }
-                        }
-                    },
-                    windows: {
-                        pipeline {
-                            stage("Test windows") {
-                                sh 'echo windows'
-                            }
-                        }
-                    }
-                }
             }
         }
         stage("Approve") {
@@ -42,6 +21,15 @@ pipeline {
             }
         }
         stage('Bar') {
+		    agent {
+		        docker {
+		            image "ubuntu:18.04"
+		            customWorkspace "test"
+		        }
+		    }
+            steps {
+                sh "echo 123"
+            }
             steps {
                 script {
                     def stages = [:]
