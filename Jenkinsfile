@@ -32,6 +32,15 @@ pipeline {
                 }
             }
         }
+        stage("Approve") {
+            agent none
+            options {
+                timeout(time: 7, unit: "DAYS")
+            }
+            steps {
+                input message: "Deploy to production?"
+            }
+        }
         stage('Bar') {
             steps {
                 script {
