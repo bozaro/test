@@ -30,6 +30,7 @@ pipeline {
                         }
                     }
                 }
+                archiveArtifacts("Jenkinsfile")
             }
         }
         stage('Bar') {
