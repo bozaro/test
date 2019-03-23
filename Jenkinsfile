@@ -2,52 +2,23 @@ pipeline {
     agent {
         docker {
             image "ubuntu:18.04"
-            customWorkspace "test"
         }
     }
 
+    parameters {
+        string(name: 'DELAY', defaultValue: '0', description: 'Step delay')
+    }
+
     stages {
-        stage('Test') {
+        stage('Long step...') {
             steps {
-                sh "echo 123"
-            }
-        }
-        stage('Foo') {
-            steps {
+                sh "echo Begin"
                 script {
-                    parallel linux: {
-                        pipeline {
-                            stage("Test linux") {
-                                sh 'echo linux'
-                            }
-                        }
-                    },
-                    windows: {
-                        pipeline {
-                            stage("Test windows") {
-                                sh 'echo windows'
-                            }
-                        }
-                    }
+                    currentBuild.description = "Delay: $DELAY"
                 }
+                sh "sleep $DELAY"
+                sh "echo End"
                 archiveArtifacts("Jenkinsfile")
-            }
-        }
-        stage('Bar') {
-            steps {
-                script {
-                    def stages = [:]
-                    for (i = 0; i < 5; i++) {
-                        stages.put("Test $i", {
-                            pipeline {
-                                stage("Test $i") {
-                                    sh 'echo $i'
-                                }
-                            }
-                        })
-                    }
-                    parallel stages
-                }
             }
         }
     }
