@@ -6,7 +6,7 @@ pipeline {
     }
 
     parameters {
-        string(name: 'DELAY', defaultValue: '0', description: 'Step delay')
+        string(name: 'SIZE', defaultValue: '0', description: 'Size (mb)')
     }
 
     stages {
@@ -14,11 +14,10 @@ pipeline {
             steps {
                 sh "echo Begin"
                 script {
-                    currentBuild.description = "Delay: $DELAY"
+                    currentBuild.description = "Size: $SIZE"
                 }
-                sh "sleep $DELAY"
-                sh "echo End"
-                archiveArtifacts("Jenkinsfile")
+                sh "dd if=/dev/zero of=bigfile bs=1048576 count=$SIZE"
+                archiveArtifacts("bigfile")
             }
         }
     }
