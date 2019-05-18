@@ -30,7 +30,7 @@ pipeline {
 
     post {
         always {
-            setBuildStatus('Validating', currentBuild.result)
+            setBuildStatus('Validating', currentBuild.result == "SUCCESS" ? "SUCCESS" : "FAILURE")
         }
     }
 }
