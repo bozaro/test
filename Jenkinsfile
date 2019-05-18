@@ -45,6 +45,12 @@ pipeline {
                 if (!testSuccess) {
                     setBuildStatus('FAILURE')
                 }
+                sh """
+set -ex
+if ! [ git pull origin $GIT_COMMIT:develop ]; then
+  echo Non fast-forward
+fi
+"""
             }
         }
     }
