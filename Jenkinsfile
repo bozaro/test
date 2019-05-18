@@ -47,6 +47,9 @@ pipeline {
 git config --local credential.helper "!p() { echo username=\\$GIT_USERNAME; echo password=\\$GIT_PASSWORD; }; p"
 set -ex
 if ! (git push origin $GIT_COMMIT:refs/heads/develop); then
+  git config user.email "jenkins@bozaro.ru"
+  git config user.name "Jenkins"
+
   git fetch origin refs/heads/develop
   git checkout FETCH_HEAD
   git merge -m "Merge branch '$GIT_BRANCH' into develop\n\n$JENKINS_URL" $GIT_COMMIT
