@@ -47,7 +47,9 @@ pipeline {
 git config --local credential.helper "!p() { echo username=\\$GIT_USERNAME; echo password=\\$GIT_PASSWORD; }; p"
 set -ex
 if ! (git push origin $GIT_COMMIT:refs/heads/develop); then
-  echo Non fast-forward
+  git fetch origin
+  git checkout refs/heads/develop
+  git merge -m "Merge branch '$GIT_BRANCH' into develop\n\n$JENKINS_URL" $GIT_COMMIT
 fi
 """
                 }
