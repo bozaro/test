@@ -4,7 +4,7 @@ void setBuildStatus(String message, String state) {
             contextSource     : [$class: "ManuallyEnteredCommitContextSource", context: "ci/jenkins/tests"],
             errorHandlers     : [[$class: "ChangingBuildStatusErrorHandler", result: "UNSTABLE"]],
             statusResultSource: [$class: "ConditionalStatusResultSource", results: [[$class: "AnyBuildResult", message: BUILD_TAG, state: state]]]
-    ]);
+    ])
 }
 
 pipeline {
@@ -18,19 +18,24 @@ pipeline {
         stage('Notify') {
             steps {
                 sh "env | sort"
-                setBuildStatus('Validating', 'PENDING')
+                setBuildStatus('PENDING')
             }
         }
         stage('Build') {
             steps {
-                sh "sleep 5; false"
+                sh "sleep 5"
+            }
+        }
+        stage('Quick') {
+            steps {
+                setBuildStatus('SUCCESS')
             }
         }
     }
 
     post {
         always {
-            setBuildStatus('Validating', currentBuild.result == "SUCCESS" ? "SUCCESS" : "FAILURE")
+            setBuildStatus(currentBuild.result)
         }
     }
 }
