@@ -1,4 +1,4 @@
-void setBuildStatus(String message, String state) {
+void setBuildStatus(String state) {
     step([
             $class            : "GitHubCommitStatusSetter",
             contextSource     : [$class: "ManuallyEnteredCommitContextSource", context: "ci/jenkins/tests"],
@@ -27,15 +27,16 @@ pipeline {
             }
         }
         stage('Quick') {
+            always {
+                setBuildStatus(currentBuild.result)
+            }
             steps {
-                setBuildStatus('SUCCESS')
+                // setBuildStatus('SUCCESS')
+                sh "echo 1"
             }
         }
     }
 
     post {
-        always {
-            setBuildStatus(currentBuild.result)
-        }
     }
 }
