@@ -56,7 +56,7 @@ if ! (git push origin $GIT_COMMIT:refs/heads/develop); then
 
   git push origin HEAD:refs/heads/develop
 fi
-git push origin :refs/heads/$GIT_BRANCH --force-with-lease=refs/heads/$GIT_BRANCH:$GIT_COMMIT || true
+git push origin --force-with-lease=refs/heads/$GIT_BRANCH:$GIT_COMMIT :refs/heads/$GIT_BRANCH || true
 """
                 }
             }
