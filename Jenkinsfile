@@ -46,7 +46,7 @@ pipeline {
                     sh """
 git config --local credential.helper "!p() { echo username=\\$GIT_USERNAME; echo password=\\$GIT_PASSWORD; }; p"
 set -ex
-if ! (git push origin $GIT_COMMIT:develop); then
+if ! (git push origin $GIT_COMMIT:refs/heads/develop); then
   echo Non fast-forward
 fi
 """
