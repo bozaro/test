@@ -41,12 +41,16 @@ pipeline {
                 if (!testSuccess) {
                     setBuildStatus('FAILURE')
                 }
-                sh """
+                withCredentials([usernamePassword(credentialsId: 'github_bozaro_user', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
+
+                    sh """
+git config --local credential.helper "!p() { echo username=\\$GIT_USERNAME; echo password=\\$GIT_PASSWORD; }; p"
 set -ex
 if ! (git push origin $GIT_COMMIT:develop); then
   echo Non fast-forward
 fi
 """
+                }
             }
         }
     }
