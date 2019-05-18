@@ -31,7 +31,7 @@ pipeline {
 
     post {
         always {
-            githubNotify(context: 'Status', description: 'Validating')
+            setBuildStatus('Validating', currentBuild.result)
         }
     }
 }
