@@ -53,6 +53,8 @@ if ! (git push origin $GIT_COMMIT:refs/heads/develop); then
   git fetch origin refs/heads/develop
   git checkout FETCH_HEAD
   git merge -m "Merge branch '$GIT_BRANCH' into develop\n\n$JENKINS_URL" $GIT_COMMIT
+
+  git push origin HEAD:refs/heads/develop
 fi
 """
                 }
