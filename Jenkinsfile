@@ -1,3 +1,5 @@
+def testSuccess = false
+
 void setBuildStatus(String state) {
     step([
             $class            : "GitHubCommitStatusSetter",
@@ -28,6 +30,9 @@ pipeline {
         }
         stage('Quick') {
             steps {
+                script {
+                    testSuccess = true;
+                }
                 setBuildStatus('SUCCESS')
                 sh "echo 1"
             }
@@ -36,7 +41,11 @@ pipeline {
 
     post {
         always {
-            setBuildStatus(currentBuild.result)
+            script {
+                if (!testSuccess) {
+                    setBuildStatus('FAILURE')
+                }
+            }
         }
     }
 }
