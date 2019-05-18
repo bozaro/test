@@ -27,16 +27,16 @@ pipeline {
             }
         }
         stage('Quick') {
-            always {
-                setBuildStatus(currentBuild.result)
-            }
             steps {
-                // setBuildStatus('SUCCESS')
+                setBuildStatus('SUCCESS')
                 sh "echo 1"
             }
         }
     }
 
     post {
+        always {
+            setBuildStatus(currentBuild.result)
+        }
     }
 }
