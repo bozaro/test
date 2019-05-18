@@ -5,20 +5,22 @@ pipeline {
         }
     }
 
-    parameters {
-        string(name: 'SIZE', defaultValue: '0', description: 'Size (mb)')
+    stages {
+        stage('Notify') {
+            steps {
+                githubNotify(context: 'Status', description: 'Validating', status: 'PENDING')
+            }
+        }
+        stage('Build') {
+            steps {
+                sh "sleep 5"
+            }
+        }
     }
 
-    stages {
-        stage('Long step...') {
-            steps {
-                sh "echo Begin"
-                script {
-                    currentBuild.description = "Size: $SIZE"
-                }
-                sh "dd if=/dev/zero of=bigfile bs=1048576 count=$SIZE"
-                archiveArtifacts("bigfile")
-            }
+    post {
+        always {
+            githubNotify(context: 'Status', description: 'Validating')
         }
     }
 }
