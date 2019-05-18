@@ -11,9 +11,9 @@ void setBuildStatus(String state) {
 
 pipeline {
     agent {
-        docker {
+        /*docker {
             image "ubuntu:18.04"
-        }
+        }*/
     }
 
     stages {
