@@ -3,7 +3,7 @@ void setBuildStatus(String message, String state) {
             $class            : "GitHubCommitStatusSetter",
             contextSource     : [$class: "ManuallyEnteredCommitContextSource", context: "ci/jenkins/tests"],
             errorHandlers     : [[$class: "ChangingBuildStatusErrorHandler", result: "UNSTABLE"]],
-            statusResultSource: [$class: "ConditionalStatusResultSource", results: [[$class: "AnyBuildResult", message: message, state: state]]]
+            statusResultSource: [$class: "ConditionalStatusResultSource", results: [[$class: "AnyBuildResult", message: BUILD_TAG, state: state]]]
     ]);
 }
 
