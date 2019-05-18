@@ -21,7 +21,7 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh "sleep 5"
+                sh "sleep 1"
             }
         }
         stage('Quick') {
