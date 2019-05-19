@@ -1,12 +1,11 @@
 def testSuccess = false
 
 void setBuildStatus(String state) {
-    def reposSourceURL = scm.repositories[0].getURIs()[0].toString()
     step([
             $class            : "GitHubCommitStatusSetter",
             contextSource     : [$class: "ManuallyEnteredCommitContextSource", context: "ci/jenkins/tests"],
             errorHandlers     : [[$class: "ChangingBuildStatusErrorHandler", result: "UNSTABLE"]],
-            reposSource       : [$class: 'ManuallyEnteredRepositorySource', url: reposSourceURL],
+            reposSource       : [$class: 'ManuallyEnteredRepositorySource', url: GIT_URL],
             statusResultSource: [$class: "ConditionalStatusResultSource", results: [[$class: "AnyBuildResult", message: BUILD_TAG, state: state]]]
     ])
 }
