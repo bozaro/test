@@ -10,27 +10,18 @@ void setBuildStatus(String state) {
 }
 
 pipeline {
-    agent any
+    agent none
 
     stages {
         stage('Notify') {
             steps {
-                sh "env | sort"
                 setBuildStatus('PENDING')
             }
         }
         stage('Build') {
+            agent any
             steps {
                 sh "sleep 1"
-            }
-        }
-        stage('Quick') {
-            steps {
-                script {
-                    testSuccess = true;
-                }
-                setBuildStatus('SUCCESS')
-                sh "echo 1"
             }
         }
     }
@@ -38,10 +29,8 @@ pipeline {
     post {
         always {
             script {
-                if (!testSuccess) {
-                    setBuildStatus('FAILURE')
-                }
-                if (GIT_BRANCH.startsWith("quick")) {
+                setBuildStatus(currentBuild.result)
+                if (GIT_BRANCH.startsWith("quick") && currentBuild.result == 'SUCCESS') {
                     withCredentials([usernamePassword(credentialsId: 'github_bozaro_user', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
 
                         sh """
