@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Slack') {
             steps {
-                slackSend channel: '#alerts-mongo-sync', message: 'Test', teamDomain: 'joom-team'
+                slackSend channel: '#alerts-mongo-sync', message: 'Test'
             }
         }
     }
