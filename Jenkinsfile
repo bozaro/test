@@ -1,7 +1,7 @@
 def COLOR_MAP = ['SUCCESS': 'good', 'FAILURE': 'danger', 'UNSTABLE': 'danger', 'ABORTED': 'danger']
 
 pipeline {
-    agent none
+    agent any
 
     stages {
         stage('Slack') {
