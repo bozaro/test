@@ -1,16 +1,11 @@
+@Library('joom@feature/git-commit') _
+
 pipeline {
-    parameters {
-        gitParameter name: 'GIT_COMMIT', type: 'PT_REVISION'
-    }
-    agent {
-        dockerfile {
-            customWorkspace "test"
-        }
-    }
+    agent none
     stages {
         stage('Log') {
             steps {
-                sh "git log -n1"
+                echo getGitCommit()
             }
         }
     }
