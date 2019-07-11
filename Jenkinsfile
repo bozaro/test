@@ -1,11 +1,14 @@
-@Library('joom@feature/git-commit') _
-
 pipeline {
-    agent none
+    agent any
+
+    options {
+        jobWeight 2
+    }
+
     stages {
         stage('Log') {
             steps {
-                echo getGitCommit()
+                sh "sleep 10"
             }
         }
     }
