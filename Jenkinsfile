@@ -1,14 +1,10 @@
 pipeline {
     agent any
 
-    options {
-        jobWeight 2
-    }
-
     stages {
-        stage('Log') {
+        stage('Test') {
             steps {
-                sh "sleep 10"
+                sh "env | sort"
             }
         }
     }
