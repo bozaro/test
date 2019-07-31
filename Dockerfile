@@ -1,30 +1,16 @@
 FROM alpine
 ARG N=1
 RUN echo $N > foo.txt
-# 5 sec
-RUN sleep 1
-RUN sleep 1
-RUN sleep 1
-RUN sleep 1
-RUN sleep 1
+# 20 sec
+RUN sleep 2
+RUN sleep 2
+RUN sleep 2
+RUN sleep 2
+RUN sleep 2
 
-# 5 sec
-RUN sleep 1
-RUN sleep 1
-RUN sleep 1
-RUN sleep 1
-RUN sleep 1
-
-# 5 sec
-RUN sleep 1
-RUN sleep 1
-RUN sleep 1
-RUN sleep 1
-RUN sleep 1
-
-# 5 sec
-RUN sleep 1
-RUN sleep 1
-RUN sleep 1
-RUN sleep 1
-RUN sleep 1
+# 10 sec
+RUN sleep 2
+RUN sleep 2
+RUN sleep 2
+RUN sleep 2
+RUN sleep 2
