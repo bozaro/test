@@ -107,7 +107,7 @@ pipeline {
             environment {
               T = "SQ"
             }
-            parallel {
+            stages {
                 stage('Stage 1') {
                     steps {
                         script {
