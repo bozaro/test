@@ -1,6 +1,6 @@
 pipeline {
     agent {
-        label 'deploy-dev'
+        label 'onspot'
     }
 
     stages {
