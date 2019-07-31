@@ -4,7 +4,7 @@ pipeline {
     }
 
     stages {
-        stage('Test parallel 1') {
+        stage('Test parallel') {
             environment {
               T = "P1"
             }
@@ -53,7 +53,7 @@ pipeline {
                 }
             }
         }
-        stage('Test parallel 2') {
+        stage('Test buildkit') {
             environment {
               T = "P2"
               DOCKER_BUILDKIT = "1"
