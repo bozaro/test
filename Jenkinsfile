@@ -4,6 +4,13 @@ pipeline {
     }
 
     stages {
+        stage('Prepare') {
+            steps {
+                script {
+                    docker.image("alpine").pull()
+                }
+            }
+        }
         stage('Test parallel') {
             environment {
               T = "P1"
