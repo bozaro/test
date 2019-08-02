@@ -6,7 +6,7 @@ pipeline {
     agent none
 
     parameters {
-        string(name: 'TARGET_HOST')
+        string(name: 'TARGET_HOST', defaultValue: '')
     }
 
     environment {
