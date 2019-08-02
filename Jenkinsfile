@@ -1,15 +1,23 @@
+@Library('joom@master') _
+
+def TARGET_HOST = env.TARGET_HOST ? env.TARGET_HOST :  "test-deploy-${env.BUILD_NUMBER}-${getGitCommit()}"
+
 pipeline {
-    agent {
-        docker {
-            image "ubuntu:18.04"
-            customWorkspace "test"
-        }
+    agent none
+
+    parameters {
+        string(name: 'TARGET_HOST')
     }
+
+    environment {
+        CI_HOST = "${TARGET_HOST}"
+    }
+
     stages {
         stage('Test') {
             steps {
-                telegramSend '@Bozaro test'
-                telegramSend 'Hello World'
+                echo "$TARGET_HOST"
+                echo "$CI_HOST"
             }
         }
     }
