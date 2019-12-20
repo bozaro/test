@@ -1,23 +1,31 @@
-@Library('joom@master') _
-
-def TARGET_HOST = env.TARGET_HOST ? env.TARGET_HOST :  "test-deploy-${env.BUILD_NUMBER}-${getGitCommit()}"
-
 pipeline {
     agent none
-
-    parameters {
-        string(name: 'TARGET_HOST', defaultValue: '')
-    }
-
-    environment {
-        CI_HOST = "${TARGET_HOST}"
-    }
-
     stages {
-        stage('Test') {
-            steps {
-                echo "$TARGET_HOST"
-                echo "$CI_HOST"
+        stage('BuildAndTest') {
+            matrix {
+                agent any
+                axes {
+                    axis {
+                        name 'PLATFORM'
+                        values 'linux', 'windows', 'mac'
+                    }
+                    axis {
+                        name 'BROWSER'
+                        values 'firefox', 'chrome', 'safari', 'edge'
+                    }
+                }
+                stages {
+                    stage('Build') {
+                        steps {
+                            echo "Do Build for ${PLATFORM} - ${BROWSER}"
+                        }
+                    }
+                    stage('Test') {
+                        steps {
+                            echo "Do Test for ${PLATFORM} - ${BROWSER}"
+                        }
+                    }
+                }
             }
         }
     }
