@@ -8,7 +8,10 @@ pipeline {
     stages {
         stage('Log') {
             steps {
-                sh "sleep 60"
+                script {
+                    def b = build '/test/empty'
+                    echo "${b.id}"
+                }
             }
         }
     }
