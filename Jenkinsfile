@@ -1,14 +1,10 @@
 pipeline {
-    agent any
-
-    options {
-        jobWeight 2
-    }
+    agent none
 
     stages {
         stage('Log') {
             steps {
-                sh "sleep 60"
+                echo "Test"
             }
         }
     }
