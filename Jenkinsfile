@@ -1,17 +1,12 @@
 pipeline {
-    agent any
-
-    options {
-        jobWeight 2
-    }
+    agent none
 
     stages {
-        stage('Log') {
+        stage('Trigger Remote Job') {
             steps {
-                script {
-                    def b = build '/test/empty'
-                    echo "${b.id}"
-                }
+                echo "Before"
+                triggerRemoteJob job: "foo", remoteJenkinsName: "remote_jenkins", maxConn: 5, enhancedLogging: true
+                echo "After"
             }
         }
     }
