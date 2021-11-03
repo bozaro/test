@@ -4,7 +4,14 @@ pipeline {
     stages {
         stage('Trigger Remote Job') {
             steps {
-                echo "${currentBuild.changeSets[0]}"
+ def changelogString = gitChangelog returnType: 'STRING',
+  from: [type: 'REF', value: 'HEAD^'],
+  to: [type: 'REF', value: 'HEAD'],
+  template: """
+  // Template is documented below!
+  """
+
+ currentBuild.description = changelogString
             }
         }
     }
