@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Trigger Remote Job') {
             steps {
-                echo "${currentBuild.changeSets.getItems()}"
+                echo "${currentBuild.changeSets[0]}"
             }
         }
     }
