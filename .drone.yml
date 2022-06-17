@@ -3,6 +3,5 @@ type: exec
 
 steps:
 - name: test
-  image: golang
   commands:
   - echo "Hello, World!!!"
