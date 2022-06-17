@@ -1,7 +1,9 @@
 kind: pipeline
-type: exec
+name: default
 
 steps:
 - name: test
+  image: golang
   commands:
-  - id
+  - go test
+  - go build
