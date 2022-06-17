@@ -4,4 +4,4 @@ type: exec
 steps:
 - name: test
   commands:
-  - echo "Hello, World!!!"
+  - id
