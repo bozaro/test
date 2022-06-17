@@ -7,3 +7,7 @@ steps:
   commands:
   - go test
   - go build
+
+trigger:
+  branch:
+  - "*"
